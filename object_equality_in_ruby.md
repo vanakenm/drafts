@@ -68,7 +68,6 @@ In order to avoid unexpected behaviour, the following rules should be enforced w
 
 This method has in fact no relationship with equality but rather test if one object can be subsumed/classified under another object. This method is called the ***case subsumption*** method because it is used by case statements to provide meaningfull semantics.
 
-In other words
 ```ruby
 case 'Brian'
   when /Brian/
