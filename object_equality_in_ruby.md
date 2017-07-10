@@ -2,11 +2,11 @@
 
 Every object oriented programming language provide a set of methods to test objects equivalence. 
 Ruby is no different and propose a whopping four methods to test equality between objects. 
-Let's quickly dig into each one of them. 
+Let's quickly dig into each of them. 
 
 ### `equal?` or how to test object identity
 
-This method is inherited from [Object](https://ruby-doc.org/core-2.4.1/Object.html#method-i-eql-3F) and test object identity (both object have the same object_id hence point to the same memory address).
+This method is inherited from [Object](https://ruby-doc.org/core-2.4.1/Object.html#method-i-eql-3F) and test object identity (both objects have the same object_id hence point to the same memory address).
 
 ```ruby
 class MovieCharacter
@@ -19,16 +19,18 @@ end
 
 rick = MovieCharacter.new('Rick Deckard')
 roy = MovieCharacter.new('Roy Batty')
+roy_copy = MovieCharacter.new('Roy Batty')
 rick.equal? roy               #=> false
 rick.equal? rick              #=> true
+roy_copy.equal? row           #=> false - this is not the real Roy Batty!
 ````
 
 Because testing for object identity is always the same and must stay consistent across all objects,
-this method **should not** be overwritten.
+this method **should never** be overwritten.
 
 ### `==` or how to test object state equivalence
 
-This is the method that you should overwrite if you want to test state equivalence between your objects. It's default implementation is inherited from [Object](https://ruby-doc.org/core-2.4.1/Object.html#method-i-eql-3Fis) and test for identity (same as `equal?`).
+This is the method that you should overwrite if you want to test state equivalence between your objects. Its default implementation is inherited from [Object](https://ruby-doc.org/core-2.4.1/Object.html#method-i-eql-3Fis) and test for identity (same as `equal?`).
 
 ```ruby
 class MovieCharacter
@@ -127,7 +129,7 @@ characters = { MovieCharacter.new('Keyser Soze')  => 'Kevin Spacey'}
 puts characters[MovieCharacter.new('Keyser Soze')]        #=> Kevin Spacey
 ```
  
-By default, `eql?` is implemented in [Object](https://ruby-doc.org/core-2.4.1/Object.html#method-i-eql-3Fis) and has the same implementation (what the documentation call synonymous) as the [Object](https://ruby-doc.org/core-2.4.1/Object.html#method-i-eql-3Fis) `==` method. It is considered good practice to follow the same rule for descendant class, meaning to ensure that `==` and `eql?` always return the same consistent answer. 
+By default, `eql?` is implemented in [Object](https://ruby-doc.org/core-2.4.1/Object.html#method-i-eql-3Fis) and has the same implementation (what the documentation call synonymous) as the [Object](https://ruby-doc.org/core-2.4.1/Object.html#method-i-eql-3Fis) `==` method. It is considered good practice to follow the same rule for descendant classes, meaning to ensure that `==` and `eql?` always return the same consistent answer. 
 
 One quick way to do this is to alias `eql?` to `==`  
 
